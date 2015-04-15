@@ -1,0 +1,11 @@
+release: ["SVA1_COADD_SPTE","SVA1_COADD_ELGORDO","SVA1_COADD_RXJ","SVA1_COADD_BULLET"]
+min_boxsize: 32
+max_boxsize: 256
+detband: i
+fpack_dims: [10240,1]
+
+magzp_ref: 30.0
+
+comment: |
+    Same as 010 but more tiles. Includes tiles
+    from 010
