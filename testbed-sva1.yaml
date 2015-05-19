@@ -1,3 +1,4 @@
+release: "SVA1_COADD_SPTE"
 tilenames: [
                        'DES0511-5457','DES0516-5457',
                'DES0508-5540','DES0513-5540','DES0518-5540',
