@@ -1,0 +1,19 @@
+# now have properly centered images
+
+# can be a list
+release: [
+    'y1a1_coadd_cosmos_d10',
+    'y1a1_coadd_sn_d10',
+    'y1a1_coadd_vvds14_d10',
+]
+
+# these refine the tiles used
+# we search for tiles that have at least r,i,z
+withbands: ["r","i","z"]
+
+# we create for tiles that have any of these, so
+# some will not have g made
+bands: ["g","r","i","z"]
+
+comment: |
+  depth 10 for the special fields
