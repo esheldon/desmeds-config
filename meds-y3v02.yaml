@@ -35,4 +35,5 @@ fpack_pars:
     FZQVALUE: 4
     FZTILE: "(10240,1)"
     FZALGOR: "RICE_1"
-    FZQMETHD: "SUBTRACTIVE_DITHER_1"
+    # preserve zeros, don't dither them
+    FZQMETHD: "SUBTRACTIVE_DITHER_2"
