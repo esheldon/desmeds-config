@@ -1,0 +1,11 @@
+medsconf: y3v02
+
+bands: [g,r,i,z]
+
+# Just tilenames for my files.  For desdm they are something like
+# DES0224-4206_r2577p01
+
+tile_ids: [
+    DES0310-2124, # typical tile
+    DES0315-2415, # strong z weight map problem
+]
