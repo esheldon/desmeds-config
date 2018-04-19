@@ -6,8 +6,8 @@ source_type: "finalcut"
 # ormask and noise will be added in the coadd process
 cutout_types: ['image','weight','seg','bmask']
 
-# we get the correct wcs from the null weight image headers
-use_astro_refine: False
+# we need to update the astrometry for the finalcut
+use_astro_refine: True
 
 # extensions for single-epoch images
 # the ngwint files
@@ -37,10 +37,11 @@ coadd_bkg_ext: "none"
 
 # we won't fpack the full MEDS file, it is only used
 # as input to the coadder anyway
+# note this is actually taken care of in the wrapper by
+# requesting a name .fits
 fpack: False
 
-# we will fpack the coadded file
-fpack_coadd: True
+# we do fpack the coadd MEDS
 fpack_pars:
     FZQVALUE: 4
     FZTILE: "(10240,1)"
@@ -110,7 +111,10 @@ bmask_flags: [
 # NEAREDGE is actually related to bleed trails near the edge
 edge_flags: [
     512,  # EDGE
-    8192, # NEAREDGE
+    #8192, # NEAREDGE not in y3
+    1073741824, # this is marked in the MEDS maker when a stamp had
+                # missing data due to the edge.
+                # See meds.defaults.BMASK_EDGE
 ]
 
 interp:
@@ -119,7 +123,6 @@ interp:
 coadd:
     interp: "lanczos3"
     flat_wcs: False
-    global_seed: 3671
 
 psf:
     type: "psfex"
