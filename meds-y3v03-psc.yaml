@@ -1,0 +1,129 @@
+medsconf: "y3v03-psc"
+campaign: "y3a1_coadd"
+
+source_type: "finalcut"
+
+# ormask and noise will be added in the coadd process
+cutout_types: ['image','weight','seg','bmask']
+
+# we get the correct wcs from the null weight image headers
+use_astro_refine: False
+
+# extensions for single-epoch images
+# the ngwint files
+se_image_ext:  "sci"
+se_weight_ext: "wgt"
+se_bmask_ext:  "msk"
+
+# separate bkg files
+se_bkg_ext:    "sci"
+
+# separate seg files
+se_seg_ext:    "sci"
+
+# coadd images
+coadd_image_ext:  "sci"
+coadd_weight_ext: "wgt"
+coadd_bmask_ext:  "msk"
+
+# separate segmap file
+coadd_seg_ext:    "sci"
+
+# coadds are already background subtracted
+coadd_bkg_ext: "none"
+
+# DESDM prefers to have the compression keywords instead
+# of fpack command line arguments
+
+# we won't fpack the full MEDS file, it is only used
+# as input to the coadder anyway
+fpack: False
+
+# we will fpack the coadded file
+fpack_coadd: True
+fpack_pars:
+    FZQVALUE: 4
+    FZTILE: "(10240,1)"
+    FZALGOR: "RICE_1"
+    # preserve zeros, don't dither them
+    FZQMETHD: "SUBTRACTIVE_DITHER_2"
+
+#
+# these sections govern the postage stamp coadding
+#
+
+# maximum total masked area, after any symmetrization
+# of the bmask and weight map. So multiply by two if
+# you are symmetrizing
+max_masked_frac: 0.10
+
+# set a flag for outlier pixels among the list
+reject_outliers: True
+
+# symmetrize the mask, helps cancel additive systematics
+symmetrize_mask: True
+
+# check a 7x7 region near the center.  If any of the
+# flags are set there, we do not include the epoch
+central_region:
+    check: True
+    size: 7
+
+# can't interpolate near the edge
+# throw out when entire edge is masked
+stamp_edge:
+    check: True
+
+# flags to consider bad
+# these are for y3
+#bmask_flags: [
+#        2,     # SATURATE
+#        4,     # INTERP. Already interpolated, e.g bad cols, cosmic rays
+#        2048,  # SUSPECT includes tapebump
+#        #8192,  # NEAREDGE not in y3
+#        #16384, # TAPEBUMP not in y3
+#]
+bmask_flags: [
+        1,     # BPM
+        2,     # SATURATE
+        4,     # INTERP. Already interpolated; is this ever set?
+        8,     # BADAMP
+        16,    # CRAY
+        32,    # STAR
+        64,    # TRAIL
+        128,   # EDGEBLEED
+        256,   # SSXTALK
+        512,   # EDGE
+        1024,  # STREAK
+        2048,  # SUSPECT for y3 this includes TAPEBUMP
+
+        #8192,  # NEAREDGE not in y3
+        #16384, # TAPEBUMP not in y3
+
+        1073741824, # this is marked in the MEDS maker when a stamp had
+                    # missing data due to the edge.
+                    # See meds.defaults.BMASK_EDGE
+]
+
+
+# we do not include postage stamps that are on the edge
+# NEAREDGE is actually related to bleed trails near the edge
+edge_flags: [
+    512,  # EDGE
+    8192, # NEAREDGE
+]
+
+interp:
+    type: "cubic"
+
+coadd:
+    interp: "lanczos3"
+    flat_wcs: False
+    global_seed: 3671
+
+psf:
+    type: "psfex"
+
+# this is used to reserve the PSF array on disk
+# using the DESDM psfs this should be plenty big
+max_psf_size: 31
