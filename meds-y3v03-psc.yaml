@@ -35,12 +35,6 @@ coadd_bkg_ext: "none"
 # DESDM prefers to have the compression keywords instead
 # of fpack command line arguments
 
-# we won't fpack the full MEDS file, it is only used
-# as input to the coadder anyway
-# note this is actually taken care of in the wrapper by
-# requesting a name .fits
-fpack: False
-
 # we do fpack the coadd MEDS
 fpack_pars:
     FZQVALUE: 4
