@@ -120,7 +120,3 @@ coadd:
 
 psf:
     type: "psfex"
-
-# this is used to reserve the PSF array on disk
-# using the DESDM psfs this should be plenty big
-max_psf_size: 31
