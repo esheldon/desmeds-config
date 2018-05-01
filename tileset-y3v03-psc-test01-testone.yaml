@@ -1,0 +1,8 @@
+medsconf: y3v03-psc-test01
+
+# make meds files for these
+bands: ['g','r','i','z','Y']
+
+tile_ids: [
+    DES0206-0333,
+]
