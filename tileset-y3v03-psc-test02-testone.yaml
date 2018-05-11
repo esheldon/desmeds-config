@@ -1,0 +1,9 @@
+# single tile testbed for psc
+medsconf: y3v03-psc-test02
+
+# make meds files for these
+bands: ['g','r','i','z','Y']
+
+tile_ids: [
+    DES0205-0207,
+]

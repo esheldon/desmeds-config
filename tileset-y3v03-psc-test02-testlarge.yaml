@@ -1,5 +1,5 @@
 
-medsconf: y3v03-psc
+medsconf: y3v03-psc-test02
 bands: ['g','r','i','z','Y']
 
 tile_ids: [
