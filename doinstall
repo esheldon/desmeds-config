@@ -1,11 +1,10 @@
 #!/bin/bash
 
-if [[ $# -lt 1 ]]; then
-    echo "doinstall dir"
+dir=$DESMEDS_CONFIG_DIR
+if [[ $dir == "" ]]; then
+    echo "DESMEDS_CONFIG_DIR not set"
     exit 1
 fi
-
-dir=$1
 
 echo "rsyncing to $dir"
 
