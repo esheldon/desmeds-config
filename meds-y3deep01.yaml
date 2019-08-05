@@ -3,7 +3,7 @@
 #  - double check mask flags; problem is some images were from
 #    different versions of the codes;  check with robert
 
-medsconf: "y3deep"
+medsconf: "y3deep01"
 campaign: "Y3A2_COSMOS_COADD_TRUTH_V4"
 
 source_type: "finalcut"
@@ -121,9 +121,9 @@ edge_flags: [
 interp:
     type: "cubic"
 
-coadd:
-    interp: "lanczos3"
-    flat_wcs: False
+# coadd:
+#     interp: "lanczos3"
+#     flat_wcs: False
 
 psf:
     type: "psfex"
